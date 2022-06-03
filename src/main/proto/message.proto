@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+option java_package = "bsuir.diplom.serverapplication.constants";
+option java_outer_classname = "StockMessageProto";
+
+message StockMessage {
+  CommandType commandType = 1;
+
+  Ping ping = 2;
+  Pong pong = 3;
+
+  RegistrationRequest registrationRequest = 4;
+  RegistrationResponse registrationResponse = 5;
+
+  AuthRequest authRequest = 6;
+  AuthResponse authResponse = 7;
+
+  LogoutRequest logoutRequest = 8;
+  LogoutResponse logoutResponse = 9;
+
+  DownloadDataRequest downloadDataRequest = 10;
+  DownloadDataResponse downloadDataResponse = 11;
+
+  UploadDataRequest uploadDataRequest = 12;
+  UploadDataResponse uploadDataResponse = 13;
+
+  MessageRequest messageRequest = 14;
+  MessageResponse messageResponse = 15;
+}
+
+enum CommandType {
+  PING = 0;
+  PONG = 1;
+
+  REGISTRATION = 2;
+
+  AUTH = 3;
+  LOGOUT = 4;
+
+  DOWNLOAD_DATA = 5;
+  UPLOAD_DATA = 6;
+  SEND_MESSAGE = 7;
+
+  REGISTRATION_BACK = 12;
+  AUTH_BACK = 13;
+  LOGOUT_BACK = 14;
+
+  DOWNLOAD_DATA_BACK = 15;
+  UPLOAD_DATA_BACK = 16;
+  SEND_MESSAGE_BACK = 17;
+}
+
+message RegistrationRequest {
+  string username = 1;
+  string password = 2;
+  map<string, string> regData = 3;
+}
+
+message RegistrationResponse {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+  string uid=4;
+  string token=5;
+  string sessionId=6;
+}
+
+message AuthRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+  string uid=4;
+  string token=5;
+  string sessionId=6;
+}
+
+message LogoutRequest {
+  string uid = 1;
+  string token = 2;
+  string sessionId = 3;
+}
+
+message LogoutResponse {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+}
+
+message Ping {
+  string uid = 1;
+  string token = 2;
+  string sessionId = 3;
+}
+
+message Pong {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+}
+
+message MessageRequest {
+  string uid = 1;
+  string token = 2;
+  string sessionId = 3;
+  string toUid = 4;
+  string toGroup = 5;
+  string message = 6;
+  uint64 timeStamp = 7;
+}
+
+message MessageResponse {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+}
+
+message DownloadDataRequest {
+  string uid = 1;
+  string token = 2;
+  string sessionId = 3;
+  string criteria = 4;
+  uint64 timeStamp = 5;
+}
+
+message DownloadDataResponse {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+}
+
+message UploadDataRequest {
+  string uid = 1;
+  string token = 2;
+  string sessionId = 3;
+  map<string, string> data = 4;
+  uint64 timeStamp = 5;
+}
+
+message UploadDataResponse {
+  bool result = 1;
+  uint32 code = 2;
+  string msg = 3;
+}
+
+
+
+
+
+
+
